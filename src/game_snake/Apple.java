@@ -1,3 +1,5 @@
+package game_snake;
+
 import java.awt.Color;
 import java.awt.Graphics;
  

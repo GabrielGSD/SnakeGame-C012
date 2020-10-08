@@ -1,3 +1,4 @@
+import game_snake.Apple;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
