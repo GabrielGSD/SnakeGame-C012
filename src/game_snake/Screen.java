@@ -1,4 +1,5 @@
 import game_snake.Apple;
+import game_snake.Music;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -23,6 +24,8 @@ public class Screen extends JPanel implements Runnable, KeyListener {
  
     private Apple apple;
     private ArrayList<Apple> apples;
+    
+    
     
     private Random r;
     

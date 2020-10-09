@@ -1,3 +1,4 @@
+import game_snake.Music;
 import javax.swing.JFrame;
  
 public class Frame {
@@ -17,6 +18,8 @@ public class Frame {
         
     }
     public static void main(String[] args) {
-        new Frame();
+        Music toc = new Music();
+        toc.play();
+        //new Frame();
     }
 }
