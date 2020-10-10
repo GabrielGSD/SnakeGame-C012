@@ -1,10 +1,12 @@
 package game_snake;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 public class ThreadCronometro extends Thread{
+    
+    
+    public static int min = 2;
+    public static int seg = 0;
     
     public ThreadCronometro() {
 
@@ -23,18 +25,23 @@ public class ThreadCronometro extends Thread{
     
     
     public void run(){
-               
+        
         Music m = new Music();
         m.sound.loop();
-        //new ThreadCronometro(); //////////////////// Chamar o frame
-        
-        for (int i = 10; i > 0; i--) {
+        for (int i = 180; i > 0; i--) {
             System.out.println("Tempo: "+ i);
-            
-            if(i-1 == 5){ 
+           
+            if(i == 2){ 
                 m.sound.stop();
                 break;
             }
+            if(seg == 0 && min > 0) {
+                seg = 59;
+                min--;
+            }else if(min == 0){
+                System.out.println("ACABOU");
+            }
+            seg--;
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException ex) {
