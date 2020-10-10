@@ -1,5 +1,4 @@
-import Threads.ThreadCronometro;
-import game_snake.Music;
+import game_snake.Screen;
 import javax.swing.JFrame;
 
 public class Frame {
@@ -18,11 +17,5 @@ public class Frame {
         frame.setVisible(true);     
         
     }
-    public static void main(String[] args) {
-
-        new Frame();
-        ThreadCronometro tc = new ThreadCronometro();
-        tc.start();
-
-    }
+  
 }
