@@ -20,6 +20,7 @@ public class Frame {
     public static void main(String[] args) {
         Music m = new Music();
         m.sound.play();
+        m.sound.stop();
         new Frame();
     }
 }

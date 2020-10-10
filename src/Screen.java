@@ -2,6 +2,7 @@ import game_snake.Apple;
 import game_snake.Music;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -26,6 +27,8 @@ public class Screen extends JPanel implements Runnable, KeyListener {
     private ArrayList<Apple> apples;
     
     
+    private int score = 0;
+    
     
     private Random r;
     
@@ -35,12 +38,13 @@ public class Screen extends JPanel implements Runnable, KeyListener {
     private boolean right = true, left = false, up = false, down =false;
     
     private int ticks = 0;
+   
     
     public Screen() {
         setFocusable(true);
         
         addKeyListener(this);
-        setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        setPreferredSize(new Dimension(WIDTH, 430));
  
         r = new Random();
         
@@ -68,6 +72,7 @@ public class Screen extends JPanel implements Runnable, KeyListener {
                     yCoor == apples.get(i).getyCoor()) {
                 size++;
                 apples.remove(i);
+                System.out.println("PEGOU A MAÇÃ");
                 i++;
             }
         }
@@ -105,6 +110,14 @@ public class Screen extends JPanel implements Runnable, KeyListener {
     }
  
     public void paint(Graphics g) {
+        
+        g.setColor(Color.BLACK);
+        g.fillRect(0, 400, WIDTH, 50);
+        
+        g.setColor(Color.green);
+        g.setFont(new Font("arial", Font.PLAIN, 22));
+        g.drawString("Score:" + score, 300, 420);
+        
         g.clearRect(0, 0, WIDTH, HEIGHT);
         g.setColor(Color.ORANGE);
         g.fillRect(0, 0, WIDTH, HEIGHT);
