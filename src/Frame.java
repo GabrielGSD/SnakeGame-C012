@@ -1,3 +1,4 @@
+import Threads.ThreadCronometro;
 import game_snake.Music;
 import javax.swing.JFrame;
 
@@ -18,9 +19,10 @@ public class Frame {
         
     }
     public static void main(String[] args) {
-        Music m = new Music();
-        m.sound.play();
-        m.sound.stop();
-        new Frame();
+
+        //new Frame();
+        ThreadCronometro tc = new ThreadCronometro();
+        tc.start();
+
     }
 }
