@@ -19,8 +19,7 @@ public class Frame {
         
     }
     public static void main(String[] args) {
-        Music m = new Music();
-        m.sound.play();
+        
         //new Frame();
         ThreadCronometro tc = new ThreadCronometro();
         tc.start();
