@@ -8,7 +8,7 @@ public class ThreadLoading extends Thread{
     public void run(){
         while(bp.barra.getValue()<100){
             try {
-                Thread.sleep(10);////////////////////////////////Aumentar depois
+                Thread.sleep(100);////////////////////////////////Aumentar depois
                 bp.barra.setValue(bp.barra.getValue()+1);
             } catch (InterruptedException ex) {
                 System.out.print("Erro!!!");
