@@ -4,22 +4,21 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JProgressBar;
 
-
 public class BarraDeProgresso extends JFrame {
-    
+
     public JProgressBar barra = new JProgressBar();
-        
-    public BarraDeProgresso(){
+
+    public BarraDeProgresso() {
         configurarJanela();
-        barra.setBounds(40,40,500,50);
+        barra.setBounds(40, 40, 500, 50);
         barra.setStringPainted(true);
         barra.setValue(1);
-        barra.setMaximum(100); 
+        barra.setMaximum(100);
         barra.setForeground(Color.GREEN);
         add(barra);
     }
-    
-    public void configurarJanela(){
+
+    public void configurarJanela() {
         setTitle("Loading");
         setLayout(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -27,8 +26,8 @@ public class BarraDeProgresso extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
     }
-    
-    public void fechar(){
+
+    public void fechar() {
         setVisible(false);
     }
 }

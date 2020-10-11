@@ -2,17 +2,15 @@ package game_snake;
 
 import javax.swing.JFrame;
 
-public class ThreadCronometro extends Thread{
-    
-    
+public class ThreadCronometro extends Thread {
+
     public static int min = 2;
     public static int seg = 0;
-    
+
     Music m = new Music();
     JFrame frame = new JFrame();
     Screen screen = new Screen(frame, m);
-    
-    
+
     public ThreadCronometro() {
 
         frame.add(screen);
@@ -21,25 +19,22 @@ public class ThreadCronometro extends Thread{
         frame.setResizable(false);
         frame.pack();
         frame.setLocationRelativeTo(null);
-        frame.setVisible(true);     
+        frame.setVisible(true);
 
     }
-    
-    public void run(){
-        
-        
+
+    public void run() {
+
         m.sound.loop();
         for (int i = 180; i > 0; i--) {
             screen.Time(min, seg);
-            if(i == 2){ 
-                m.pararMusica();
-                break;
-            }
-            if(seg == 0 && min > 0) {
+            
+            if (seg == 0 && min > 0) {
                 seg = 59;
                 min--;
-            }else if(min == 0){
+            } else if (min == 0) {
                 System.out.println("ACABOU");
+                m.pararMusica();
             }
             seg--;
             try {
@@ -50,4 +45,3 @@ public class ThreadCronometro extends Thread{
         }
     }
 }
-
