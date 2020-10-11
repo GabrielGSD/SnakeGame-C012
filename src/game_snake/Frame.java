@@ -2,11 +2,11 @@ import game_snake.Screen;
 import javax.swing.JFrame;
 
 public class Frame {
-    
+    /*
     public Frame() {
         
         JFrame frame = new JFrame();
-        Screen screen = new Screen();
+        Screen screen = new Screen(frame);
         
         frame.add(screen);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -15,7 +15,6 @@ public class Frame {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);     
-        
+        */
     }
   
-}

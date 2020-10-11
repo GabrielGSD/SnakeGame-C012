@@ -9,4 +9,7 @@ public class Music {
     public URL som = getClass().getResource("soundSnake.wav");
     public AudioClip sound = Applet.newAudioClip(som);  
     
+    public void pararMusica(){
+        sound.stop();
+    }
 }

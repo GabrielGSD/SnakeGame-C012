@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Random;
+import javax.swing.JFrame;
  
 import javax.swing.JPanel;
  
@@ -26,7 +27,7 @@ public class Screen extends JPanel implements Runnable, KeyListener {
     private Apple apple;
     private ArrayList<Apple> apples;
     
-    
+   
     private int score = 0;
     
     public int min = 0;
@@ -37,7 +38,7 @@ public class Screen extends JPanel implements Runnable, KeyListener {
         seg = aux_seg;
     }
     
-//    public ThreadCronometro cron = new ThreadCronometro();
+    
     
     private Random r;
     
@@ -48,9 +49,13 @@ public class Screen extends JPanel implements Runnable, KeyListener {
     
     private int ticks = 0;
    
+    JFrame j1 = new JFrame();
+    public Music m1 = new Music();
     
-    public Screen() {
+    public Screen(JFrame frame, Music m) {
         
+        j1 = frame;
+        m1 = m;
         setFocusable(true);
         
         addKeyListener(this);
@@ -158,7 +163,10 @@ public class Screen extends JPanel implements Runnable, KeyListener {
  
     public void stop() {
         running = false;
-        GameOver gg = new GameOver();
+        j1.setVisible(false);
+        m1.pararMusica();
+               
+        //GameOver gg = new GameOver();
         try {
             thread.join();
         } catch (InterruptedException e) {

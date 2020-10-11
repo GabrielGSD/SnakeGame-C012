@@ -8,12 +8,12 @@ public class ThreadCronometro extends Thread{
     public static int min = 2;
     public static int seg = 0;
     
+    Music m = new Music();
     JFrame frame = new JFrame();
-    Screen screen = new Screen();
+    Screen screen = new Screen(frame, m);
+    
     
     public ThreadCronometro() {
-
-        
 
         frame.add(screen);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -25,16 +25,14 @@ public class ThreadCronometro extends Thread{
 
     }
     
-    
     public void run(){
         
-        Music m = new Music();
+        
         m.sound.loop();
         for (int i = 180; i > 0; i--) {
-            System.out.println("Tempo: "+ i);
             screen.Time(min, seg);
             if(i == 2){ 
-                m.sound.stop();
+                m.pararMusica();
                 break;
             }
             if(seg == 0 && min > 0) {
