@@ -32,7 +32,7 @@ public class ThreadCronometro extends Thread{
         m.sound.loop();
         for (int i = 180; i > 0; i--) {
             System.out.println("Tempo: "+ i);
-            screen.Time(i);
+            screen.Time(min, seg);
             if(i == 2){ 
                 m.sound.stop();
                 break;

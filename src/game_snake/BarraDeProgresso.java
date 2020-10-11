@@ -27,4 +27,8 @@ public class BarraDeProgresso extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
     }
+    
+    public void fechar(){
+        setVisible(false);
+    }
 }
