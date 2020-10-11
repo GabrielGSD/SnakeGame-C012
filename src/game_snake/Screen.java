@@ -28,6 +28,13 @@ public class Screen extends JPanel implements Runnable, KeyListener {
     
     
     private int score = 0;
+    
+    public int auxTime = 0;
+    
+    public void Time(int aux){
+        auxTime = aux;
+    }
+    
 //    public ThreadCronometro cron = new ThreadCronometro();
     
     private Random r;
@@ -41,6 +48,7 @@ public class Screen extends JPanel implements Runnable, KeyListener {
    
     
     public Screen() {
+        
         setFocusable(true);
         
         addKeyListener(this);
@@ -117,7 +125,7 @@ public class Screen extends JPanel implements Runnable, KeyListener {
         g.setColor(Color.green);
         g.setFont(new Font("arial", Font.PLAIN, 22));
         g.drawString("Score:" + score, 300, 420);
-        g.drawString( ":" , 10, 420);
+        g.drawString( "Tempo restante: " + auxTime, 10, 420);
         
         g.clearRect(0, 0, WIDTH, HEIGHT);
         g.setColor(Color.ORANGE);
