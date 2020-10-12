@@ -36,8 +36,11 @@ public class Screen extends JPanel implements Runnable, KeyListener {
     public JFrame j1 = new JFrame();
     public Music m1 = new Music();
     
+    //Criação do construtor da Tela(Screen)
     public Screen(JFrame frame, Music m) {
-
+        
+        //Guardando os objetos criados na ThreadCronometro, nos objetos 
+        //criados aqui na classe Screen
         j1 = frame;
         m1 = m;
         setFocusable(true);
@@ -52,12 +55,15 @@ public class Screen extends JPanel implements Runnable, KeyListener {
 
         start();
     }
-
+    
+    //Criação da função que receberá o tempo da Thread Cronometro
     public void Time(int aux_min, int aux_seg) {
         min = aux_min;
         seg = aux_seg;
     }
-
+    
+    //Criação do primeiro ponto da cobra, iniciando sempre em 10,10
+    //Criacão do primeiro ponto da maça, sempre aleatório
     public void tick() {
         if (snake.size() == 0) {
             b = new BodyPart(xCoor, yCoor, 10);
@@ -70,7 +76,9 @@ public class Screen extends JPanel implements Runnable, KeyListener {
             apple = new Apple(xCoor, yCoor, 10);
             apples.add(apple);
         }
-
+        
+        //Após a coletagem da maça, removemos ela da tela, incrementamos em 1 o 
+        //comprimentro da cobra e incremetamos o Score
         for (int i = 0; i < apples.size(); i++) {
             if (xCoor == apples.get(i).getxCoor()
                     && yCoor == apples.get(i).getyCoor()) {
@@ -80,7 +88,8 @@ public class Screen extends JPanel implements Runnable, KeyListener {
                 i++;
             }
         }
-
+        
+        //Encerramos o jogo caso a cobra encoste nela mesma
         for (int i = 0; i < snake.size(); i++) {
             if (xCoor == snake.get(i).getxCoor()
                     && yCoor == snake.get(i).getyCoor()) {
@@ -89,6 +98,8 @@ public class Screen extends JPanel implements Runnable, KeyListener {
                 }
             }
         }
+        
+        //Encerramos o jogo caso a cobra encoste na borda da tela
         if (xCoor < 0 || xCoor > 39 || yCoor < 0 || yCoor > 39) {
             stop();
         }
@@ -96,44 +107,41 @@ public class Screen extends JPanel implements Runnable, KeyListener {
         ticks++;
 
         if (ticks > 250000) {
-            if (right) {
-                xCoor++;
-            }
-            if (left) {
-                xCoor--;
-            }
-            if (up) {
-                yCoor--;
-            }
-            if (down) {
-                yCoor++;
-            }
+            if (right) xCoor++;
+            if (left) xCoor--;
+            if (up) yCoor--;
+            if (down) yCoor++;
 
             ticks = 0;
 
             b = new BodyPart(xCoor, yCoor, 10);
             snake.add(b);
 
-            if (snake.size() > size) {
-                snake.remove(0);
-            }
+            if (snake.size() > size) snake.remove(0);
         }
     }
 
     public void paint(Graphics g) {
-
+        
+        //Barra de dados exibidos ao final da tela do Game, com o tempo restante
+        //e o Score
         g.setColor(Color.BLACK);
         g.fillRect(0, 400, WIDTH, 50);
-
+        
+        //Inserção dos dados na barra feita acima
         g.setColor(Color.green);
         g.setFont(new Font("arial", Font.PLAIN, 22));
         g.drawString("Score:" + score, 300, 420);
         g.drawString(min + ": " + seg, 20, 420);
-
+        
+        //Tela onde a cobra será guiada
         g.clearRect(0, 0, WIDTH, HEIGHT);
         g.setColor(Color.ORANGE);
         g.fillRect(0, 0, WIDTH, HEIGHT);
-
+        
+        
+        //Sobreposição de uma grade(Funcionando com uma matriz), para guiar os
+        //jogadores, de modo a facilitar a caminho a ser percorrido pela cobra
         g.setColor(Color.BLACK);
         for (int i = 0; i < WIDTH / 10; i++) {
             g.drawLine(i * 10, 0, i * 10, HEIGHT);
@@ -141,23 +149,32 @@ public class Screen extends JPanel implements Runnable, KeyListener {
         for (int i = 0; i < HEIGHT / 10; i++) {
             g.drawLine(0, i * 10, WIDTH, i * 10);
         }
-
+        
+        
+        //Inserindo a cobra na tela, e pegando informações para saber 
+        //onde ela está
         for (int i = 0; i < snake.size(); i++) {
             snake.get(i).draw(g);
         }
+        //Inserindo a maçã na tela, e pegando informações para saber 
+        //onde ela está
         for (int i = 0; i < apples.size(); i++) {
             apples.get(i).draw(g);
         }
-
     }
-
+    
+    //Iniciamos a ThreadScreen
     public void start() {
         running = true;
         threadScreen = new Thread(this);
         threadScreen.start();
     }
-
+    
+    //Paramos a ThreadScreen
     public void stop() {
+        
+        //Paramos sua execução, fechamos a janela, paramos a música e abrimos 
+        //a tela de Game Over
         running = false;
         j1.setVisible(false);
         m1.pararMusica();
@@ -167,18 +184,21 @@ public class Screen extends JPanel implements Runnable, KeyListener {
         try {
             threadScreen.join();
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
-
+    
+    //Executamos as funções tick e repaint sem delay, para não termos erro 
+    //na leitura dos dados inseridos pela usuário
     public void run() {
         while (running) {
             tick();
             repaint();
         }
     }
-
+    
+    //Leitura para sabermos qual tecla foi pressionada, e quais ações devem
+    //ser realizadas
     @Override
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
@@ -205,9 +225,8 @@ public class Screen extends JPanel implements Runnable, KeyListener {
     }
 
     @Override
-    public void keyReleased(KeyEvent arg0) {
-    }
-
-    public void keyTyped(KeyEvent arg0) {
-    }
+    public void keyTyped(KeyEvent ke){}
+    
+    @Override
+    public void keyReleased(KeyEvent ke){}
 }

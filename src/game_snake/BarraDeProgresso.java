@@ -7,7 +7,8 @@ import javax.swing.JProgressBar;
 public class BarraDeProgresso extends JFrame {
 
     public JProgressBar barra = new JProgressBar();
-
+    
+    //Configurando a barra de progresso na janela
     public BarraDeProgresso() {
         configurarJanela();
         barra.setBounds(40, 40, 500, 50);
@@ -17,7 +18,8 @@ public class BarraDeProgresso extends JFrame {
         barra.setForeground(Color.GREEN);
         add(barra);
     }
-
+    
+    //Configurando a janela de carregamento
     public void configurarJanela() {
         setTitle("Loading");
         setLayout(null);
@@ -26,7 +28,8 @@ public class BarraDeProgresso extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
     }
-
+    
+    //Fechando a janela de carregamento
     public void fechar() {
         setVisible(false);
     }
