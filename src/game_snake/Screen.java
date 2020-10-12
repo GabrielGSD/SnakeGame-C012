@@ -60,6 +60,11 @@ public class Screen extends JPanel implements Runnable, KeyListener {
     public void Time(int aux_min, int aux_seg) {
         min = aux_min;
         seg = aux_seg;
+        
+        if(min==0 && seg==0){
+            win();
+            System.out.println("HERE");
+        }
     }
     
     //Criação do primeiro ponto da cobra, iniciando sempre em 10,10
@@ -139,7 +144,6 @@ public class Screen extends JPanel implements Runnable, KeyListener {
         g.setColor(Color.ORANGE);
         g.fillRect(0, 0, WIDTH, HEIGHT);
         
-        
         //Sobreposição de uma grade(Funcionando com uma matriz), para guiar os
         //jogadores, de modo a facilitar a caminho a ser percorrido pela cobra
         g.setColor(Color.BLACK);
@@ -161,6 +165,7 @@ public class Screen extends JPanel implements Runnable, KeyListener {
         for (int i = 0; i < apples.size(); i++) {
             apples.get(i).draw(g);
         }
+        
     }
     
     //Iniciamos a ThreadScreen
@@ -180,6 +185,23 @@ public class Screen extends JPanel implements Runnable, KeyListener {
         m1.pararMusica();
         GameOver go = new GameOver();
         go = new GameOver();
+
+        try {
+            threadScreen.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    
+     public void win() {
+        
+        //Paramos sua execução, fechamos a janela, paramos a música e abrimos 
+        //a tela de Win
+        running = false;
+        j1.setVisible(false);
+        m1.pararMusica();
+        WinGame win = new WinGame();
+        win = new WinGame();
 
         try {
             threadScreen.join();

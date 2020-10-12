@@ -4,8 +4,8 @@ import javax.swing.JFrame;
 
 public class ThreadCronometro extends Thread {
 
-    public static int min = 2;
-    public static int seg = 0;
+    public static int min = 0;
+    public static int seg = 10;
     
     //Criação dos objetos
     Music m = new Music();
@@ -37,7 +37,7 @@ public class ThreadCronometro extends Thread {
             if (seg == 0 && min > 0) {
                 seg = 59;
                 min--;
-            } else if (min == 0) {
+            } else if (min == 0 && seg == 0) {
                 //Acabando o tempo, encerramos a música
                 System.out.println("ACABOU");
                 m.pararMusica();
